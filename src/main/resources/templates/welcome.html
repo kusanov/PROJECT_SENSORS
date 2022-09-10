@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>MainPage</title>
+    <title>Welcome</title>
 </head>
 <body>
-
+<h2>Sensors</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Model</th>
+        <th>Range_from</th>
+        <th>Range_to</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Operations</th>
+    <tbody>
+    <tr th:each="sensor : ${allSens}">
+        <td th:text="${sensor.name}"/>
+        <td th:text="${sensor.model}"/>
+        <td th:text="${sensor.rangeFrom}"/>
+        <td th:text="${sensor.rangeTo}"/>
+        <td th:text="${sensor.type}"/>
+        <td th:text="${sensor.description}"/>
+        <td>
+            <a th:href="@{/edit/{id}(id=${sensor.id})}">Edit</a>
+            <a th:href="@{/delete/{id}(id=${sensor.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+        <br>
+</table>
+<br>
+<input type="submit" value="Add sensor" onclick="window.location.href='addNewSensor'">
+<br>
 </body>
 </html>

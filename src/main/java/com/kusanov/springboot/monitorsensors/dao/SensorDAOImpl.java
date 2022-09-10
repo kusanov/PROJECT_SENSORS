@@ -10,7 +10,6 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-
 public class SensorDAOImpl implements SensorDAO{
     @Autowired
     private EntityManager entityManager;
@@ -27,7 +26,7 @@ public class SensorDAOImpl implements SensorDAO{
     @Override
     public void saveSensor(Sensor sensor) {
         Session session = entityManager.unwrap(Session.class);
-session.saveOrUpdate(sensor);
+session.save(sensor);
     }
 
     @Override
@@ -40,7 +39,7 @@ Sensor sensor = session.get(Sensor.class,id);
     @Override
     public void deleteSensor(int id) {
         Session session= entityManager.unwrap(Session.class);
-        Query query = session.createQuery("delete from Employee " + " where id =:employeeId");
+        Query query = session.createQuery("delete from Sensor " + " where id =:employeeId");
         query.setParameter("employeeId",id);
         query.executeUpdate();
     }
