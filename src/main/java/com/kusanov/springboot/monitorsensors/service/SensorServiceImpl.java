@@ -37,4 +37,9 @@ public class SensorServiceImpl implements SensorService {
     public void deleteSensor(int id) {
         sensorDAO.deleteSensor(id);
     }
+
+    @Override
+    public List<Sensor> searchSensors(String name) {
+        return sensorDAO.searchSensors(name);
+    }
 }

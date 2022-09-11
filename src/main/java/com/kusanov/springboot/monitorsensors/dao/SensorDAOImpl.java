@@ -26,7 +26,7 @@ public class SensorDAOImpl implements SensorDAO{
     @Override
     public void saveSensor(Sensor sensor) {
         Session session = entityManager.unwrap(Session.class);
-session.saveOrUpdate(sensor);
+        session.saveOrUpdate(sensor);
     }
 
     @Override
@@ -39,8 +39,19 @@ Sensor sensor = session.get(Sensor.class,id);
     @Override
     public void deleteSensor(int id) {
         Session session= entityManager.unwrap(Session.class);
-        Query query = session.createQuery("delete from Sensor " + " where id =:employeeId");
-        query.setParameter("employeeId",id);
+        Query query = session.createQuery("delete from Sensor " + " where id =:sensorId");
+        query.setParameter("sensorId",id);
         query.executeUpdate();
+    }
+
+    @Override
+    public List<Sensor> searchSensors(String name) {
+        Session session= entityManager.unwrap(Session.class);
+        System.out.println(name);
+        System.out.println(name);
+        Query query = session.createQuery("SELECT sensor from Sensor sensor where name like :name");
+        query.setParameter("name",name);
+        List<Sensor> searchSensors = query.getResultList();
+        return searchSensors;
     }
 }

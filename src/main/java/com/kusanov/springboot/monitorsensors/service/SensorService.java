@@ -5,11 +5,11 @@ import com.kusanov.springboot.monitorsensors.entity.Sensor;
 import java.util.List;
 
 public interface SensorService {
-    public List<Sensor> getAllSensors();
+    List<Sensor> getAllSensors();
 
-    public void saveSensor(Sensor sensor);
+    void saveSensor(Sensor sensor);
 
-    public Sensor getSensor(int id);
+    Sensor getSensor(int id);
 
-    public void deleteSensor(int id);
-}
+    void deleteSensor(int id);
+    List<Sensor> searchSensors(String name);}

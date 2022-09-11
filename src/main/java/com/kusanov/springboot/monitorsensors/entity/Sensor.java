@@ -2,6 +2,9 @@ package com.kusanov.springboot.monitorsensors.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "monitorsensors")
@@ -11,16 +14,23 @@ public class Sensor {
     @Column(name = "id")
     private int id;
     @Column(name = "name")
+    @NotBlank(message = "Name not blank!")
+    @Size(min = 2,max = 30,message = "Wrong name length!")
     private String name;
     @Column(name = "model")
-    private String Model;
+    @NotBlank(message = "Model not blank!")
+    @Size(min = 2,max = 15,message = "Wrong model length!")
+    private String model;
     @Column(name = "range_from")
+    @Min(value = 1,message = "Range from min=1")
     private int rangeFrom;
     @Column(name = "range_to")
+    @Min(value = 2,message = "Range to min=2")
     private int rangeTo;
     @Column(name = "type")
     private String type;
     @Column(name = "description")
+    @Size(min = 2,max = 200,message = "Wrong description length!")
     private String description;
 
 
@@ -30,7 +40,7 @@ public class Sensor {
     public Sensor(int id, String name, String model, int rangeFrom, int rangeTo, String type, String description) {
         this.id = id;
         this.name = name;
-        Model = model;
+        this.model = model;
         this.rangeFrom = rangeFrom;
         this.rangeTo = rangeTo;
         this.type = type;
@@ -39,7 +49,7 @@ public class Sensor {
 
     public Sensor(String name, String model, int rangeFrom, int rangeTo, String type, String description) {
         this.name = name;
-        Model = model;
+        this.model = model;
         this.rangeFrom = rangeFrom;
         this.rangeTo = rangeTo;
         this.type = type;
@@ -63,11 +73,11 @@ public class Sensor {
     }
 
     public String getModel() {
-        return Model;
+        return model;
     }
 
     public void setModel(String model) {
-        Model = model;
+        this.model = model;
     }
 
     public int getRangeFrom() {
@@ -107,7 +117,7 @@ public class Sensor {
         return "Sensor{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", Model='" + Model + '\'' +
+                ", Model='" + model + '\'' +
                 ", rangeFrom=" + rangeFrom +
                 ", rangeTo=" + rangeTo +
                 ", type='" + type + '\'' +

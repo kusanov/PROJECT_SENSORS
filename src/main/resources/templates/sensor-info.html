@@ -10,20 +10,24 @@
 </div>
 <form th:object="${sensor}" action="/saveSensor">
     <input type="hidden" name="id" th:field="*{id}" />
-
-    Name<input type="text" th:field="*{name}" />
+    Name: <input class="form-control" th:field="*{name}" size="30"/>
     <br>
-    Model<input type="text" th:field="*{model}" />
+    Model:<input type="text" th:field="*{model}" size="30"/>
     <br>
-    Range from<input type="number" th:field="*{rangeFrom}" />
+    Range from:<input type="number" th:field="*{rangeFrom}"/>
     <br>
-    Range to<input type="number" th:field="*{rangeTo}" />
+    Range to: <input type="number" th:field="*{rangeTo}"/>
     <br>
-    Type<input type="text" th:field="*{type}" />
+    Type: <input type="text" th:field="*{type}" size="30"/>
     <br>
-    Description<input type="text" th:field="*{description}" />
+    Description:<input type="text" th:field="*{description}" size="24"/>
     <br>
     <input type="submit" value="Save Sensor">
+    <span class="help-inline"><div
+            th:if="${#fields.hasAnyErrors()}">
+              <p th:each="err : ${#fields.allErrors()}" th:text="${err}">Error</p>
+            </div></span>
+    </div>
 </form>
 </div>
 </body>

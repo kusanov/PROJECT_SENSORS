@@ -35,5 +35,13 @@
 <br>
 <input type="submit" value="Add sensor" onclick="window.location.href='addNewSensor'">
 <br>
+<br>
+<form th:object="${sensor}" th:action="@{/search}" method="get">
+            <label>Search sensors by name</label>
+    <br>
+    <input th:field="*{name}" size="15"/>
+            <button type="submit">Find
+                sensors</button>
+</form>
 </body>
 </html>

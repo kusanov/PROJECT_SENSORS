@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+<h2>Search</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Model</th>
+        <th>Range_from</th>
+        <th>Range_to</th>
+        <th>Type</th>
+        <th>Description</th>
+        <tbody>
+        <tr th:each="sensor : ${searchSens}">
+            <td th:text="${sensor.name}"/>
+            <td th:text="${sensor.model}"/>
+            <td th:text="${sensor.rangeFrom}"/>
+            <td th:text="${sensor.rangeTo}"/>
+            <td th:text="${sensor.type}"/>
+            <td th:text="${sensor.description}"/>
+        </tr>
+        </tbody>
+        <br>
+</table>
+<br>
+<a th:href="@{/}">Go to main</a>
+</body>
+</html>
