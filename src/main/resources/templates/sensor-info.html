@@ -8,7 +8,7 @@
 <body>
 <h2>Sensors Info</h2>
 </div>
-<form th:object="${sensor}" action="saveSensor" method="post">
+<form th:object="${sensor}" action="/saveSensor">
     <input type="hidden" name="id" th:field="*{id}" />
 
     Name<input type="text" th:field="*{name}" />
@@ -22,7 +22,8 @@
     Type<input type="text" th:field="*{type}" />
     <br>
     Description<input type="text" th:field="*{description}" />
-    <input type="submit" value="Add Sensor">
+    <br>
+    <input type="submit" value="Save Sensor">
 </form>
 </div>
 </body>

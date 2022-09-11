@@ -26,7 +26,7 @@ public class SensorDAOImpl implements SensorDAO{
     @Override
     public void saveSensor(Sensor sensor) {
         Session session = entityManager.unwrap(Session.class);
-session.save(sensor);
+session.saveOrUpdate(sensor);
     }
 
     @Override

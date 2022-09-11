@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServlet;
 import java.util.List;
 
 @Controller
@@ -21,6 +19,10 @@ public class MyController{
         model.addAttribute("allSens",allSensors);
         return "welcome";
     }
+    @GetMapping("/error")
+    public String getError() {
+        return "error";
+    }
 //
 //    @GetMapping("/sensors")
 ////    public List<Sensor> showAllSensors() {
@@ -32,35 +34,28 @@ public class MyController{
 
     @GetMapping("/sensors/{id}")
     public String getSensor(@PathVariable int id) {
-        Sensor sensor = sensorService.getSensor(id);
-
+        sensorService.getSensor(id);
         return "welcome";
     }
 
     @GetMapping("/addNewSensor")
     public String addNewSensor(Model model) {
-//        Sensor sensor = new Sensor();
-        Sensor sensor = sensorService.getSensor(1);
+        Sensor sensor = new Sensor();
         model.addAttribute("sensor",sensor);
+        System.out.println(sensor);
         return "sensor-info";
     }
 
-//    @PostMapping("/saveSensor")
-    @GetMapping("/saveSensor")
-//    public String saveSensor(Sensor sensor,Model model) {
-    public String saveSensor(@ModelAttribute("sensor") Sensor sensor,Model model) {
-        System.out.println(sensor.getName());
-model.getAttribute("sensor");
+@GetMapping("/saveSensor")
+public String saveSensor(@ModelAttribute("sensor") Sensor sensor) {
         sensorService.saveSensor(sensor);
         return "redirect:/";
 
     }
-//    @PutMapping("/edit/{id}")
     @GetMapping("/edit/{id}")
     public String updateSensor(@PathVariable("id") int id, Model model) {
         Sensor sensor = sensorService.getSensor(id);
         model.addAttribute("sensor",sensor);
-//        sensorService.saveSensor(sensor);
         return "sensor-info";
 
     }
@@ -69,7 +64,6 @@ model.getAttribute("sensor");
     @GetMapping("/delete/{id}")
     public String deleteSensor(@PathVariable int id) {
         sensorService.deleteSensor(id);
-//        return "Employee with ID = " + id + " was deleted";
         return "redirect:/";
 
     }

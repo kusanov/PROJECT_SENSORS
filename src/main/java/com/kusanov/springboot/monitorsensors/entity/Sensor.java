@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name = "monitorsensors")
 public class Sensor {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
     @Column(name = "name")
@@ -25,6 +25,16 @@ public class Sensor {
 
 
     public Sensor() {
+    }
+
+    public Sensor(int id, String name, String model, int rangeFrom, int rangeTo, String type, String description) {
+        this.id = id;
+        this.name = name;
+        Model = model;
+        this.rangeFrom = rangeFrom;
+        this.rangeTo = rangeTo;
+        this.type = type;
+        this.description = description;
     }
 
     public Sensor(String name, String model, int rangeFrom, int rangeTo, String type, String description) {
@@ -90,5 +100,18 @@ public class Sensor {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Sensor{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", Model='" + Model + '\'' +
+                ", rangeFrom=" + rangeFrom +
+                ", rangeTo=" + rangeTo +
+                ", type='" + type + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
