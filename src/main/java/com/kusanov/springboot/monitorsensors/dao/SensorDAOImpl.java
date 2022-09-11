@@ -49,7 +49,7 @@ Sensor sensor = session.get(Sensor.class,id);
         Session session= entityManager.unwrap(Session.class);
         System.out.println(name);
         System.out.println(name);
-        Query query = session.createQuery("SELECT sensor from Sensor sensor where name like :name");
+        Query query = session.createQuery("SELECT sensor from Sensor sensor where name like :name ");
         query.setParameter("name",name);
         List<Sensor> searchSensors = query.getResultList();
         return searchSensors;
