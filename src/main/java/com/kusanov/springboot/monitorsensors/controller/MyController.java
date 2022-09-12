@@ -1,6 +1,7 @@
 package com.kusanov.springboot.monitorsensors.controller;
 
 import com.kusanov.springboot.monitorsensors.entity.Sensor;
+import com.kusanov.springboot.monitorsensors.entity.Type;
 import com.kusanov.springboot.monitorsensors.service.SensorService;
 import org.hibernate.boot.jaxb.spi.Binding;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -18,6 +20,11 @@ public class MyController{
     @Autowired
     private SensorService sensorService;
 
+    @ModelAttribute("types")
+    public List<Type> populateVets() {
+        List<Type> types = sensorService.getTypes();
+        return types;
+    }
     @GetMapping("/")
     public String goToWelcome(Model model) {
         List<Sensor> allSensors = sensorService.getAllSensors();
@@ -36,7 +43,6 @@ public class MyController{
     public String addNewSensor(Model model) {
         Sensor sensor = new Sensor();
         model.addAttribute("sensor",sensor);
-        System.out.println(sensor);
         return "sensor-info";
     }
 

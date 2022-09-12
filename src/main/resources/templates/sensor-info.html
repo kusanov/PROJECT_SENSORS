@@ -18,7 +18,11 @@
     <br>
     Range to: <input type="number" th:field="*{rangeTo}"/>
     <br>
-    Type: <input type="text" th:field="*{type}" size="30"/>
+    Type:
+    <select th:field="*{type.id}">
+        <option th:each="t : ${types}" th:value="${t.id}" th:text="${t.type}"
+                th:selected="${t==1}"></option>
+    </select>
     <br>
     Description:<input type="text" th:field="*{description}" size="24"/>
     <br>

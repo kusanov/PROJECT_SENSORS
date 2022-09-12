@@ -2,6 +2,7 @@ package com.kusanov.springboot.monitorsensors.service;
 
 import com.kusanov.springboot.monitorsensors.dao.SensorDAO;
 import com.kusanov.springboot.monitorsensors.entity.Sensor;
+import com.kusanov.springboot.monitorsensors.entity.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,11 @@ public class SensorServiceImpl implements SensorService {
     @Transactional
     public List<Sensor> getAllSensors() {
         return sensorDAO.getAllSensors();
+    }
+
+    @Override
+    public List<Type> getTypes() {
+        return sensorDAO.getTypes();
     }
 
     @Override
